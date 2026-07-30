@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Client", "GameStore.Client\GameStore.Client.csproj", "{CDEA4DED-59E6-4023-A581-92966B5F1DDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.API", "GameStore.API\GameStore.API.csproj", "{2303D578-EF82-4BBC-8F5D-3895104AC82B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDEA4DED-59E6-4023-A581-92966B5F1DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDEA4DED-59E6-4023-A581-92966B5F1DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDEA4DED-59E6-4023-A581-92966B5F1DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDEA4DED-59E6-4023-A581-92966B5F1DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2303D578-EF82-4BBC-8F5D-3895104AC82B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2303D578-EF82-4BBC-8F5D-3895104AC82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2303D578-EF82-4BBC-8F5D-3895104AC82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2303D578-EF82-4BBC-8F5D-3895104AC82B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
