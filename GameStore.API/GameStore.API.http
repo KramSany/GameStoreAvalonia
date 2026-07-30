@@ -1,6 +1,6 @@
 @GameStore.API_HostAddress = http://localhost:5066
 
-GET {{GameStore.API_HostAddress}}/weatherforecast/
+DELETE https://localhost:7183/api/v1/Game/3
 Accept: application/json
 
 ###

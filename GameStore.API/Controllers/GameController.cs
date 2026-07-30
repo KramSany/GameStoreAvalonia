@@ -17,16 +17,11 @@ public class GameController : ControllerBase
         _context = context;
     }
     
-    // get: api/Games
+    // get: api/Game
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<GameDto>>> GetGames([FromQuery] string? search)
+    public async Task<ActionResult<IEnumerable<GameDto>>> GetGames()
     {
         var query = _context.Games.AsNoTracking();
-
-        if (!string.IsNullOrWhiteSpace(search))
-        {
-            query = query.Where(x => x.Name.ToLower().Contains(search.ToLower()));
-        }
 
         var games = await query
             .Select(x => new GameDto
@@ -62,7 +57,7 @@ public class GameController : ControllerBase
         return Ok(gamedetaiksDto);
     }
     
-    // post: api/Games/
+    // post: api/Game/
     [HttpPost]
     public async Task<ActionResult<GameDetailsDto>> PostGame(CreateUpdateGameDto dto)
     {
