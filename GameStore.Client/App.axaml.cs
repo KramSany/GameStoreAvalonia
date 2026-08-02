@@ -10,6 +10,8 @@ using GameStore.Client.Service;
 using GameStore.Client.ViewModels;
 using GameStore.Client.Views;
 using Microsoft.Extensions.DependencyInjection;
+using MainWindow = GameStore.Client.Views.Windows.MainWindow;
+using MainWindowViewModel = GameStore.Client.ViewModels.WindowViewModel.MainWindowViewModel;
 
 namespace GameStore.Client;
 

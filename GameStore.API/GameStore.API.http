@@ -1,6 +1,6 @@
 @GameStore.API_HostAddress = http://localhost:5066
 
-DELETE https://localhost:7183/api/v1/Game/3
+GET https://localhost:7183/api/v1/Game/
 Accept: application/json
 
 ###

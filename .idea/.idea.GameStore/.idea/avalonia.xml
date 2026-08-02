@@ -5,6 +5,8 @@
       <map>
         <entry key="GameStore.Client/App.axaml" value="GameStore.Client/GameStore.Client.csproj" />
         <entry key="GameStore.Client/Views/MainWindow.axaml" value="GameStore.Client/GameStore.Client.csproj" />
+        <entry key="GameStore.Client/Views/Pages/StorePageView.axaml" value="GameStore.Client/GameStore.Client.csproj" />
+        <entry key="GameStore.Client/Views/Windows/MainWindow.axaml" value="GameStore.Client/GameStore.Client.csproj" />
         <entry key="GameStore/Views/MainWindow.axaml" value="GameStore/GameStore.csproj" />
       </map>
     </option>

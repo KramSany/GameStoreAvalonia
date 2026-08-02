@@ -14,7 +14,7 @@ public class GameApiService : BaseService
     
     public async Task<IEnumerable<GameDto>> GetGamesAsync(string? search = null)
     {
-        var url = "games";
+        var url = "Game";
 
         if (!string.IsNullOrWhiteSpace(search))
         {

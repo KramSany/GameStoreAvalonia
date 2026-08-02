@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace GameStore.Client.Views;
+namespace GameStore.Client.Views.Windows;
 
 public partial class MainWindow : Window
 {

@@ -1,0 +1,58 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GameStore.Client.ViewModels.PageViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:StorePageViewModel"
+             x:Class="GameStore.Client.Views.Pages.StorePageView">
+    <Grid RowDefinitions="Auto, *" Margin="20">
+        <TextBlock Grid.Row="0" 
+                   Text="Популярное и рекомендуемое" 
+                   FontSize="22" 
+                   FontWeight="SemiBold" 
+                   Foreground="White" 
+                   Margin="0,0,0,20"/>
+
+        <ListBox Grid.Row="1" 
+                 ItemsSource="{Binding Games}" 
+                 Background="Transparent"
+                 BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#1b2838" 
+                            CornerRadius="4" 
+                            Padding="15" 
+                            Margin="0,0,0,10"
+                            BorderBrush="#2a475e"
+                            BorderThickness="1">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <StackPanel Grid.Column="0" Spacing="5">
+                                <TextBlock Text="{Binding Name}" 
+                                           FontSize="16" 
+                                           FontWeight="Bold" 
+                                           Foreground="#66c0f4"/>
+                                <TextBlock Text="{Binding Genre}" 
+                                           FontSize="12" 
+                                           Foreground="#8f98a0"/>
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Spacing="15">
+                                <TextBlock Text="{Binding Price, StringFormat='{}{0} руб.'}" 
+                                           FontSize="16" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="#beee11"
+                                           VerticalAlignment="Center"/>
+                                <Button Content="В корзину" 
+                                        Background="#4c6c2c" 
+                                        Foreground="White" 
+                                        Padding="15,7"
+                                        CornerRadius="2"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

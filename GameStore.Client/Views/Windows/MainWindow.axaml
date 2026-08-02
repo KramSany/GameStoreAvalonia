@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:windowViewModel="clr-namespace:GameStore.Client.ViewModels.WindowViewModel"
+        xmlns:pages="clr-namespace:GameStore.Client.ViewModels.PageViewModel"
+        xmlns:views="clr-namespace:GameStore.Client.Views.Pages"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GameStore.Client.Views.Windows.MainWindow"
+        x:DataType="windowViewModel:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="GameStore.Client"
+        Width="900" Height="600"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <windowViewModel:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <Grid ColumnDefinitions="140, *" Background="#171a21">
+        
+        <StackPanel Grid.Column="0" Spacing="10" Margin="10,15,10,0">
+            
+            <Button Content="Магазин" 
+                    Command="{Binding OpenStorePageCommand}" 
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"
+                    Padding="0,10"/>
+        </StackPanel>
+
+        <ContentControl Grid.Column="1" 
+                        Margin="20"
+                        Content="{Binding SelectedPageViewModel}">
+            <ContentControl.DataTemplates>
+                <DataTemplate DataType="pages:StorePageViewModel">
+                    <views:StorePageView />
+                </DataTemplate>
+            </ContentControl.DataTemplates>
+        </ContentControl>
+        
+    </Grid>
+</Window>
