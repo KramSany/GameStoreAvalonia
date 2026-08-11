@@ -8,7 +8,5 @@ public class GameDto
     
     public string Genre { get; set; } = String.Empty;
     
-    public string? Description { get; set; } 
-    
     public decimal Price { get; set; }
 }

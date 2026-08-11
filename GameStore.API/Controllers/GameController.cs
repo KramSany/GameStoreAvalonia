@@ -96,8 +96,8 @@ public class GameController : ControllerBase
         
         game.Name = dto.Name;
         game.Description = dto.Description;
-        game.Genre = game.Genre;
-        game.Price = game.Price;
+        game.Genre = dto.Genre;
+        game.Price = dto.Price;
 
         try
         {
