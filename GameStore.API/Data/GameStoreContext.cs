@@ -8,9 +8,10 @@ public class GameStoreContext : DbContext
     public GameStoreContext(DbContextOptions<GameStoreContext> options)
         : base(options)
     {
-        Database.Migrate();
+        // Database.Migrate();
     }
     
     
     public DbSet<Game> Games { get; set; }
+    public DbSet<User> Users { get; set; }
 }
