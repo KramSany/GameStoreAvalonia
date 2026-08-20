@@ -27,7 +27,7 @@ public class GameApiService : BaseService
 
     public async Task<GameDetailsDto?> GetGameAsync(int id)
     {
-        return await GetAsync<GameDetailsDto>($"games/{id}");
+        return await GetAsync<GameDetailsDto>($"Game/{id}");
     }
 
 }

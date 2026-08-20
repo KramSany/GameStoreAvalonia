@@ -36,7 +36,7 @@ public class GameController : ControllerBase
     
     // get: api/Games/Id
     [HttpGet("{Id}")]
-    public async Task<ActionResult<GameDto>> GetGame([FromRoute] int Id)
+    public async Task<ActionResult<GameDetailsDto>> GetGame([FromRoute] int Id)
     {
         var game = await _context.Games
             .AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id);
@@ -80,7 +80,7 @@ public class GameController : ControllerBase
             Price = game.Price
         };
         
-        return CreatedAtAction(nameof(GetGame), new { id = game.Id}, createdGameDto);
+        return CreatedAtAction(nameof(GetGame), new { game.Id }, createdGameDto);
     }
     
     // put: api/Games/id
@@ -113,13 +113,13 @@ public class GameController : ControllerBase
     }
     
     // delete: api/Games/id
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteGame(int id)
+    [HttpDelete("{Id}")]
+    public async Task<IActionResult> DeleteGame([FromRoute] int Id)
     {
-        var game = await _context.Games.FindAsync(id);
+        var game = await _context.Games.FindAsync(Id);
         if (game == null)
         {
-            return NotFound(new { message = $"Game with id - {id} not found foe delete" });
+            return NotFound(new { message = $"Game with id - {Id} not found foe delete" });
         }
         
         _context.Games.Remove(game);
