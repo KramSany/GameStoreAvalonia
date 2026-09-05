@@ -12,6 +12,8 @@ using GameStore.Client.Views;
 using Microsoft.Extensions.DependencyInjection;
 using MainWindow = GameStore.Client.Views.Windows.MainWindow;
 using MainWindowViewModel = GameStore.Client.ViewModels.WindowViewModel.MainWindowViewModel;
+using GameStore.Client.ViewModels;
+using GameStore.Client.ViewModels.PageViewModel;
 
 namespace GameStore.Client;
 
@@ -28,12 +30,20 @@ public partial class App : Application
     public override void OnFrameworkInitializationCompleted()
     {
         var serviceCollection = new ServiceCollection();
+        
+        serviceCollection.AddSingleton(sp => new HttpClient 
+        { 
+            BaseAddress = new Uri("https://localhost:7183/api/v1/") 
+        });
 
-        serviceCollection.AddSingleton<HttpClient>();
 
-        serviceCollection.AddTransient<GameApiService>();
+        serviceCollection.AddSingleton<GameApiService>();
+        serviceCollection.AddSingleton<UserApiService>();
 
         serviceCollection.AddTransient<MainWindowViewModel>();
+        
+        serviceCollection.AddTransient<StorePageViewModel>();
+        serviceCollection.AddTransient<UserPageViewModel>();
         
         ServiceProvider = serviceCollection.BuildServiceProvider();
         
