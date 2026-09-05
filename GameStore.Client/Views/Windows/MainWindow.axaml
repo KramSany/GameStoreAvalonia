@@ -26,6 +26,12 @@
                     HorizontalAlignment="Stretch" 
                     HorizontalContentAlignment="Center"
                     Padding="0,10"/>
+            
+            <Button Content="Пользователи" 
+                    Command="{Binding OpenUserPageCommand}" 
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"
+                    Padding="0,10"/>
         </StackPanel>
 
         <ContentControl Grid.Column="1" 
@@ -34,6 +40,9 @@
             <ContentControl.DataTemplates>
                 <DataTemplate DataType="pages:StorePageViewModel">
                     <views:StorePageView />
+                </DataTemplate>
+                <DataTemplate DataType="pages:UserPageViewModel">
+                    <views:UserPageView />
                 </DataTemplate>
             </ContentControl.DataTemplates>
         </ContentControl>

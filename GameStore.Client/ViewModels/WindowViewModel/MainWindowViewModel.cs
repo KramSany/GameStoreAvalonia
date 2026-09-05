@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameStore.Client.Service;
 using GameStore.Client.ViewModels.PageViewModel;
@@ -9,20 +10,26 @@ namespace GameStore.Client.ViewModels.WindowViewModel;
 public partial class MainWindowViewModel : ViewModelBase
 {
 
-    private readonly GameApiService _gameApiService;
+    private readonly IServiceProvider _serviceProvider;
     
     [ObservableProperty]
     private ViewModelBase? _selectedPageViewModel;
     
-    public MainWindowViewModel(GameApiService gameApiService)
+    public MainWindowViewModel(IServiceProvider serviceProvider)
     {
-        _gameApiService = gameApiService;
+        _serviceProvider = serviceProvider;
         OpenStorePage();
     }
 
     [RelayCommand]
     private void OpenStorePage()
     {
-        SelectedPageViewModel = new StorePageViewModel(_gameApiService);
+        SelectedPageViewModel = _serviceProvider.GetRequiredService<StorePageViewModel>();
+    }
+
+    [RelayCommand]
+    private void OpenUserPage()
+    {
+        SelectedPageViewModel = _serviceProvider.GetRequiredService<UserPageViewModel>();
     }
 }
