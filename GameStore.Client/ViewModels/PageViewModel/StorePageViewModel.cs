@@ -30,9 +30,9 @@ public partial class StorePageViewModel : ViewModelBase
             Dispatcher.UIThread.Post(() =>
             {
                 Games.Clear();
-                foreach (var game in result)
+                foreach (var user in result)
                 {
-                    Games.Add(game);
+                    Games.Add(user);
                 }
             });
         }
