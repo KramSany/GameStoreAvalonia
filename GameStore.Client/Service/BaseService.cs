@@ -12,7 +12,6 @@ public abstract class BaseService
     protected BaseService(HttpClient httpClient)
     {
         HttpClient = httpClient;
-        HttpClient.BaseAddress = new Uri("https://localhost:7183/api/v1/");
     }
 
     protected async Task<T?> GetAsync<T>(string url)
