@@ -39,7 +39,8 @@ public class GameController : ControllerBase
     public async Task<ActionResult<GameDetailsDto>> GetGame([FromRoute] int Id)
     {
         var game = await _context.Games
-            .AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id);
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == Id);
         if (game == null)
         {
             return NotFound(new {message = "Game not found."});

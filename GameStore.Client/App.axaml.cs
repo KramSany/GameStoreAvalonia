@@ -35,13 +35,11 @@ public partial class App : Application
         { 
             BaseAddress = new Uri("https://localhost:7183/api/v1/") 
         });
-
-
+        
         serviceCollection.AddSingleton<GameApiService>();
         serviceCollection.AddSingleton<UserApiService>();
-
-        serviceCollection.AddTransient<MainWindowViewModel>();
         
+        serviceCollection.AddTransient<MainWindowViewModel>();
         serviceCollection.AddTransient<StorePageViewModel>();
         serviceCollection.AddTransient<UserPageViewModel>();
         
