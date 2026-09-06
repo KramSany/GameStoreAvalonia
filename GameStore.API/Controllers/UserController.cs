@@ -31,4 +31,28 @@ public class UserController : ControllerBase
             }).ToListAsync();
         return Ok(users);
     }
+    
+    // api/User/id
+    [HttpGet("{id}")]
+    public async Task<ActionResult<UserDto>> GetUser([FromRoute] int id)
+    {
+        var user = await _context.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        
+        if (user == null)
+        {
+            return NotFound(new { message = "User not found" });
+        }
+
+        var userDto = new UserDto()
+        {
+            Id = user.Id,
+            Username = user.Username,
+            Password = user.Password,
+        };
+        
+        return Ok(user);
+    }
 }
