@@ -1,4 +1,5 @@
 using System;
+using System.Formats.Asn1;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -14,7 +15,6 @@ using MainWindow = GameStore.Client.Views.Windows.MainWindow;
 using MainWindowViewModel = GameStore.Client.ViewModels.WindowViewModel.MainWindowViewModel;
 using GameStore.Client.ViewModels;
 using GameStore.Client.ViewModels.PageViewModel;
-
 namespace GameStore.Client;
 
 public partial class App : Application
