@@ -21,26 +21,24 @@ public class GameController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<GameDto>>> GetGames()
     {
-        var query = _context.Games.AsNoTracking();
-
-        var games = await query
+        var result = await _context.Games
             .Select(x => new GameDto
             {
                 Id = x.Id,
                 Name = x.Name,
                 Genre = x.Genre,
                 Price = x.Price
-            }).ToListAsync();
-        return Ok(games);
+            }).AsNoTracking().ToListAsync();
+        return Ok(result);
     }
     
-    // get: api/Games/Id
-    [HttpGet("{Id}")]
-    public async Task<ActionResult<GameDetailsDto>> GetGame([FromRoute] int Id)
+    // get: api/Games/id
+    [HttpGet("{id}")]
+    public async Task<ActionResult<GameDetailsDto>> GetGame([FromRoute] int id)
     {
         var game = await _context.Games
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.Id == Id);
+            .FirstOrDefaultAsync(x => x.Id == id);
         if (game == null)
         {
             return NotFound(new {message = "Game not found."});
@@ -62,6 +60,8 @@ public class GameController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<GameDetailsDto>> PostGame(CreateUpdateGameDto dto)
     {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        
         var game = new Game
         {
             Name = dto.Name,
@@ -85,14 +85,16 @@ public class GameController : ControllerBase
     }
     
     // put: api/Games/id
-    [HttpPut("{Id}")]
-    public async Task<IActionResult> PutGame([FromRoute] int Id, CreateUpdateGameDto dto)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutGame([FromRoute] int id, CreateUpdateGameDto dto)
     {
-        var game = await _context.Games.FindAsync(Id);
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        
+        var game = await _context.Games.FindAsync(id);
 
         if (game == null)
         {
-            return NotFound(new { message =  $"Game with ID {Id} not found." });
+            return NotFound(new { message =  $"Game with ID {id} not found." });
         }
         
         game.Name = dto.Name;
@@ -106,7 +108,7 @@ public class GameController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!_context.Games.Any(x => x.Id == Id)) return NotFound();
+            if (!_context.Games.Any(x => x.Id == id)) return NotFound();
             throw;
         }
         
@@ -114,13 +116,13 @@ public class GameController : ControllerBase
     }
     
     // delete: api/Games/id
-    [HttpDelete("{Id}")]
-    public async Task<IActionResult> DeleteGame([FromRoute] int Id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteGame([FromRoute] int id)
     {
-        var game = await _context.Games.FindAsync(Id);
+        var game = await _context.Games.FindAsync(id);
         if (game == null)
         {
-            return NotFound(new { message = $"Game with id - {Id} not found foe delete" });
+            return NotFound(new { message = $"Game with id - {id} not found foe delete" });
         }
         
         _context.Games.Remove(game);
