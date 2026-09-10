@@ -27,7 +27,6 @@ public class UserController : ControllerBase
             {
                 Id = x.Id,
                 Username = x.Username,
-                Password = x.Password,
             }).ToListAsync();
         return Ok(users);
     }
@@ -50,20 +49,18 @@ public class UserController : ControllerBase
         {
             Id = user.Id,
             Username = user.Username,
-            Password = user.Password,
         };
         
-        return Ok(user);
+        return Ok(userDto);
     }
     
     // post: api/User/
     [HttpPost]
-    public async Task<ActionResult<UserDto>> PostGame(UserDto dto)
+    public async Task<ActionResult<UserDto>> PostUser(UserDto dto)
     {
         var user = new User
         {
             Username = dto.Username,
-            Password = dto.Password,
         };
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
@@ -72,25 +69,23 @@ public class UserController : ControllerBase
         {
             Id = user.Id,
             Username = user.Username,
-            Password = user.Password
         };
         
         return CreatedAtAction(nameof(GetUser), new { user.Id }, createdUserDto);
     }
     
     // put: api/User/id
-    [HttpPut("{Id}")]
-    public async Task<IActionResult> PutUser([FromRoute] int Id, UserDto dto)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutUser([FromRoute] int id, UserDto dto)
     {
-        var user = await _context.Users.FindAsync(Id);
+        var user = await _context.Users.FindAsync(id); 
 
         if (user == null)
         {
-            return NotFound(new { message =  $"User with ID {Id} not found." });
+            return NotFound(new { message =  $"User with ID {id} not found." });
         }
         
         user.Username = dto.Username;
-        user.Password = dto.Password;
 
         try
         {
@@ -98,7 +93,7 @@ public class UserController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!_context.Users.Any(x => x.Id == Id)) return NotFound();
+            if (!_context.Users.Any(x => x.Id == id)) return NotFound();
             throw;
         }
         

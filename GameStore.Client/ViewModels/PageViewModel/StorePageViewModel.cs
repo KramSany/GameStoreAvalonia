@@ -15,6 +15,7 @@ public partial class StorePageViewModel : ViewModelBase
     [ObservableProperty] private ObservableCollection<GameDto> _games = new();
     [ObservableProperty] private ObservableCollection<GameDetailsDto> _game = new();
 
+
     public StorePageViewModel(GameApiService gameApiService)
     {
         _gameApiService = gameApiService;

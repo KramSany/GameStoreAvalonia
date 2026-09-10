@@ -32,4 +32,5 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         SelectedPageViewModel = _serviceProvider.GetRequiredService<UserPageViewModel>();
     }
+    
 }
